@@ -1,0 +1,64 @@
+/* upload.css */
+
+/* Styles pour le formulaire d'upload */
+.upload-section {
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #2E2E2E;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.upload-section h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--accent-yellow);
+}
+
+.upload-section .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.upload-section label {
+  margin-bottom: 0.5rem;
+  color: var(--accent-white);
+}
+
+.upload-section input[type="text"],
+.upload-section select,
+.upload-section input[type="file"],
+.upload-section textarea {
+  padding: 0.5rem;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background-color: #3E3E3E;
+  color: var(--accent-white);
+}
+
+.upload-section input[type="text"]:focus,
+.upload-section select:focus,
+.upload-section input[type="file"]:focus,
+.upload-section textarea:focus {
+  outline: none;
+  border-color: var(--accent-yellow);
+}
+
+.upload-section button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--accent-yellow);
+  border: none;
+  border-radius: 5px;
+  color: #000;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.upload-section button:hover {
+  background-color: #e0c200;
+}

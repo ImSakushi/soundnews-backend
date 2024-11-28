@@ -1,0 +1,460 @@
+/* main.css */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+/* Variables de couleurs */
+:root {
+  --background-color: #1A1A1A;
+  --accent-yellow: #FFD700;
+  --accent-white: #FFFFFF;
+  --button-hover: #333333;
+  --progress-bg: #646464;
+  --progress-fill: #D9D9D9;
+}
+
+/* Réinitialisation de base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "DM Sans", sans-serif;
+}
+
+body, html {
+  height: 100%;
+  background-color: var(--background-color);
+  color: var(--accent-white);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Éléments du haut */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  color: var(--accent-white);
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.icon-button:focus {
+  outline: none;
+}
+
+.nav-link {
+  color: var(--accent-white);
+  text-decoration: none;
+  font-size: 1rem;
+  margin-left: 1rem;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: var(--accent-yellow);
+}
+
+/* Zone centrale principale */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  align-items: center;
+  position: relative;
+}
+
+/* Image Container */
+.image-container {
+  position: relative;
+  width: 100%;
+  max-width: 342px;
+  aspect-ratio: 1 / 1;
+  transition: max-width 0.3s ease-out;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  z-index: 1;
+}
+
+.central-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+
+.central-image:hover {
+  cursor: grab;
+}
+
+/* Cercle noir centré avec bordure blanche extérieure */
+.overlay-circle.black-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3%;
+  height: 3%;
+  border-radius: 50%;
+  background-color: var(--background-color);
+  outline: 35px solid var(--accent-white);
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Zone des catégories */
+.categories {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+}
+
+.category-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.category-button {
+  background-color: #323232;
+  border: 1.5px solid var(--accent-white);
+  color: var(--accent-white);
+  padding: 5px 20px;
+  margin: 5px 5px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: "DM Sans", sans-serif;
+}
+
+.category-button:hover {
+  background-color: var(--button-hover);
+}
+
+.category-button.full-width {
+  margin: 5px 0;
+}
+
+/* Section Liste des musiques */
+.music-list {
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem 0;
+  padding: 0 1rem;
+}
+
+.music-list h3 {
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--accent-yellow);
+}
+
+.musics-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.music-item {
+  display: flex;
+  align-items: center;
+  background-color: #2E2E2E;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+
+.music-item:hover {
+  background-color: #3E3E3E;
+}
+
+.music-cover {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.music-info {
+  flex: 1;
+}
+
+.music-info h4 {
+  margin-bottom: 5px;
+  font-size: 1rem;
+}
+
+.music-info p {
+  font-size: 0.9rem;
+  color: var(--accent-white);
+}
+
+.play-music-btn {
+  background: none;
+  border: none;
+  color: var(--accent-white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.play-music-btn:hover {
+  color: var(--accent-yellow);
+}
+
+/* Lecteur MP3 */
+.audio-player {
+  position: fixed;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: 80%;
+  max-width: 400px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  z-index: 9;
+}
+
+.audio-player.visible {
+  display: flex;
+}
+
+.audio-player input[type=range] {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: var(--progress-bg);
+  outline: none;
+  border-radius: 2px;
+  background-image: linear-gradient(to right, var(--progress-fill) 0%, var(--progress-fill) 0%, var(--progress-bg) 0%, var(--progress-bg) 100%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.audio-player input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0;
+  height: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.audio-player input[type=range]::-moz-range-thumb {
+  width: 0;
+  height: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.audio-player .time-labels {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.audio-player .time-labels span {
+  color: var(--accent-white);
+  font-size: 0.7rem;
+}
+
+/* Boutons d'action au-dessus du footer */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  z-index: 3;
+}
+
+.action-button {
+  background-color: var(--background-color);
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  z-index: 3;
+}
+
+.action-button img {
+  width: 28px;
+  height: 28px;
+}
+
+.cross-button,
+.check-button {
+  background-color: var(--background-color);
+  border: 2px solid #FFFFFF;
+  color: #FFFFFF;
+}
+
+.cross-button i,
+.check-button i {
+  font-size: 1.75rem;
+}
+
+.cross-button:hover,
+.check-button:hover,
+.cross-button:active,
+.check-button:active {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+.back-button:hover,
+.bookmark-button:hover {
+  transform: scale(1.05);
+}
+
+.back-button:active,
+.bookmark-button:active {
+  transform: scale(0.95);
+}
+
+/* Style pour le nouveau bouton play/pause */
+.play-button-absolute {
+  position: fixed;
+  left: 50%;
+  bottom: 10%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  border: none;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: opacity 0.3s ease-out;
+}
+
+.play-button-absolute i {
+  color: var(--accent-yellow);
+  font-size: 2.5rem;
+}
+
+.play-button-absolute.visible {
+  display: flex;
+}
+
+/* Paroles synchronisées */
+.lyrics-container {
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  overflow-y: auto;
+  pointer-events: none;
+  z-index: 4;
+  display: none;
+  background: rgba(26, 26, 26, 0.8);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.lyrics-container.visible {
+  display: block;
+}
+
+.lyrics {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.lyric-line {
+  hyphens: none;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
+  font-size: 1rem;
+  color: gray;
+  transition: all 0.3s ease, transform 0.3s ease;
+  text-align: center;
+  margin: 5px 0;
+  display: inline-block;
+  transform-origin: center;
+  width: 63%;
+  padding: 0.3rem;
+  font-weight: 200;
+}
+
+.lyric-line.past {
+  color: lightgray;
+  font-size: 1rem;
+  width: 63%;
+}
+
+.lyric-line.current {
+  color: var(--accent-yellow);
+  transform: scale(1.5);
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+  width: 63%;
+}
+
+.lyric-line.future {
+  color: gray;
+  font-size: 1rem;
+  width: 63%;
+}
+
+.lyrics-container .lyrics {
+  transition: transform 0.3s ease;
+}
+
+/* Scrollbar */
+.lyrics-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.lyrics-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 215, 0, 0.5);
+  border-radius: 3px;
+}
+
+.lyrics-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.main-content.reduced-padding {
+  padding-top: 0;
+  transition: padding-top 0.3s ease-out;
+}
