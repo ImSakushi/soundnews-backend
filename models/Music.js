@@ -1,5 +1,3 @@
-// models/Music.js
-
 const mongoose = require('mongoose');
 
 const MusicSchema = new mongoose.Schema({
@@ -7,22 +5,7 @@ const MusicSchema = new mongoose.Schema({
     artist: { type: String, required: true },
     audioUrl: { type: String, required: true },
     lyrics: { type: mongoose.Schema.Types.ObjectId, ref: 'Lyric' },
-    category: { 
-        type: [String], // Tableau de chaînes
-        enum: [
-            'Science',
-            'Sécurité',
-            'Environnement',
-            'Technologie',
-            'Santé',
-            'Politique',
-            'Société',
-            'Culture',
-            'Économie',
-            'Sport'
-        ],
-        required: true 
-    },
+    category: { type: String, enum: ['Politique', 'Économie', 'Société'], required: true },
     coverImage: { type: String }, // URL de l'image de couverture
     createdAt: { type: Date, default: Date.now }
 });
